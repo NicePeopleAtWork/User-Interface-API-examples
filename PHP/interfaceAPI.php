@@ -19,9 +19,12 @@ REQUESTS
 */
 function getRequest($segment0, $segment1, $arrayParameters){
 	validateParameters($segment0,$segment1,$arrayParameters);
-	$url = "http://".$GLOBALS['apiHost']."/".$segment0."/".$segment1;
+	$url = "/".$segment0."/".$segment1;
 	completeURL($arrayParameters,$url);
+	var_dump($url);
+	die("ff");
 	generateToken($arrayParameters["system"],$url);
+	$url = "http://".$GLOBALS['apiHost'].$url;
 	get($url);
 }
 
@@ -1436,10 +1439,11 @@ $p = "system";
 UTILS
 */
 function generateToken($systemCode, &$url){
-	$pass = ""; // Use your token key here
-	$time = round(microtime(true) * 1000) + 1800000;
-	$token =  md5 ($time.$systemCode.$pass);
-	$url = $url ."&token=".$token."&time=".$time;
+	$secretKey="renfehouse";
+	$expirationTime = round(microtime(true) * 1000) + 1800000;
+	$preurl = $url . "&dateToken=".$expirationTime;
+	$token = md5($preurl.$secretKey);
+	$url = $preurl."&token=".$token;	
 }
 
 function get($url){
@@ -1466,3 +1470,7 @@ function completeURL($getParams,&$url){
 		}
 	}
 }
+$sys="golt";
+$url="";
+generateToken($sys,$url);
+echo $url;
