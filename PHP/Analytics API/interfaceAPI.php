@@ -1439,7 +1439,7 @@ $p = "system";
 UTILS
 */
 function generateToken($systemCode, &$url){
-	$secretKey="renfehouse";
+	$secretKey="testKey";
 	$expirationTime = round(microtime(true) * 1000) + 1800000;
 	$preurl = $url . "&dateToken=".$expirationTime;
 	$token = md5($preurl.$secretKey);
