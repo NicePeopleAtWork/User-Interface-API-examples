@@ -58,7 +58,7 @@ function validateParameter($param, $paramValue){
 		case "entity":
 		$err = not_empty_value($paramValue);
 		if(isset($err)) return 0;
-		$err = check_available_values($paramValue,array("buffer", "exits", "bitrate", "joinTime", "concurrent", "views", "hours", "traffic"));
+		$err = check_available_values($paramValue,array("bufferRatio", "startFailures", "exits", "bufferEvents", "bitrate", "joinTime","concurrent", "views", "hours", "traffic"));
 		if(isset($err)) return -1;
 		return 1;
 		break;
