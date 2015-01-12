@@ -21,8 +21,6 @@ function getRequest($segment0, $segment1, $arrayParameters){
 	validateParameters($segment0,$segment1,$arrayParameters);
 	$url = "/".$segment0."/".$segment1;
 	completeURL($arrayParameters,$url);
-	var_dump($url);
-	die("ff");
 	generateToken($arrayParameters["system"],$url);
 	$url = "http://".$GLOBALS['apiHost'].$url;
 	get($url);
@@ -771,7 +769,7 @@ function validateParameters($segment0, $segment1, $arrayParameters){
 				print_r($p." cannot be empty\n");
 				exit(1);
 			}elseif($res==-1){
-				print_r("Invalid value for type, correct: views,buffer, startup, failure\n");
+				print_r("Invalid value for entity, correct: views,buffer, startup, failure\n");
 				exit(1);
 			}
 
@@ -989,7 +987,7 @@ function validateParameters($segment0, $segment1, $arrayParameters){
 			break;
 
 			case "advancedTable":
-$p = "system";
+			$p = "system";
 			$res = validateParameter($p,$arrayParameters[$p]);
 			if($res==0){
 				print_r($p." cannot be empty\n");
@@ -1439,9 +1437,9 @@ $p = "system";
 UTILS
 */
 function generateToken($systemCode, &$url){
-	$secretKey="testKey";
+	$secretKey=""; //use your API Access token here
 	$expirationTime = round(microtime(true) * 1000) + 1800000;
-	$preurl = $url . "&dateToken=".$expirationTime;
+	$preurl = $url . "&time=".$expirationTime;
 	$token = md5($preurl.$secretKey);
 	$url = $preurl."&token=".$token;	
 }
@@ -1470,7 +1468,3 @@ function completeURL($getParams,&$url){
 		}
 	}
 }
-$sys="golt";
-$url="";
-generateToken($sys,$url);
-echo $url;
