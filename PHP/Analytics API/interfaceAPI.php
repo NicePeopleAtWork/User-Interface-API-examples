@@ -11,7 +11,6 @@ if(isset($options["h"])){
 }
 
 $full = isset($options["f"]);
-$apiHost = "ws.analytics.nicepeopleatwork.com";
 date_default_timezone_set ('Europe/Madrid');
 
 /*
@@ -1437,7 +1436,7 @@ function validateParameters($segment0, $segment1, $arrayParameters){
 UTILS
 */
 function generateToken($systemCode, &$url){
-	$secretKey=""; //use your API Access token here
+	global $secretKey; 
 	$expirationTime = round(microtime(true) * 1000) + 1800000;
 	$preurl = $url . "&time=".$expirationTime;
 	$token = md5($preurl.$secretKey);

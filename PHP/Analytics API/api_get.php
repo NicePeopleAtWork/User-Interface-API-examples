@@ -2,8 +2,11 @@
 
 require_once ("interfaceAPI.php");
 
-$system=""; //Use your system here
-$timezone="Europe/Madrid";
+$system = ""; // Use your system here
+$secretKey = ""; // Use your API 
+$timezone = "Europe/Madrid"; // Use your account timezone
+
+$apiHost = "ws.analytics.nicepeopleatwork.com";
 
 /*	
 ********************
